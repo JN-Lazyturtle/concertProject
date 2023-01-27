@@ -7,7 +7,7 @@ use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class ConcertHallFixtures extends Fixture
+class ConcertHallFixture extends Fixture
 {
     public const ENTROPIE = 'entropie';
     public const SCALAIRE = 'scalaire';

@@ -40,9 +40,9 @@ class UserFixture extends Fixture implements DependentFixtureInterface
 
         $manager->flush();
 
-        $this->addReference('user1', $user1);
-        $this->addReference('user2', $user2);
-        $this->addReference('user3', $user3);
+        $this->addReference(self::USER1, $user1);
+        $this->addReference(self::USER2, $user2);
+        $this->addReference(self::USER3, $user3);
     }
 
     public function getDependencies()

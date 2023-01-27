@@ -17,19 +17,19 @@ class BookingFixture extends Fixture implements DependentFixtureInterface
     {
         $booking1 = new Booking();
         $booking1->setUser($this->getReference(UserFixture::USER1));
-        $booking1->setConcert($this->getReference(ConcertFixtures::CONCERT2));
+        $booking1->setConcert($this->getReference(ConcertFixture::CONCERT2));
         $booking1->setNbTicket(4);
         $manager->persist($booking1);
 
         $booking2 = new Booking();
         $booking2->setUser($this->getReference(UserFixture::USER2));
-        $booking2->setConcert($this->getReference(ConcertFixtures::CONCERT3));
+        $booking2->setConcert($this->getReference(ConcertFixture::CONCERT3));
         $booking2->setNbTicket(2);
         $manager->persist($booking2);
 
         $booking3 = new Booking();
         $booking3->setUser($this->getReference(UserFixture::USER1));
-        $booking3->setConcert($this->getReference(ConcertFixtures::CONCERT3));
+        $booking3->setConcert($this->getReference(ConcertFixture::CONCERT3));
         $booking3->setNbTicket(1);
         $manager->persist($booking3);
 
@@ -44,7 +44,7 @@ class BookingFixture extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixture::class,
-            ConcertFixtures::class
+            ConcertFixture::class
         ];
     }
 }
