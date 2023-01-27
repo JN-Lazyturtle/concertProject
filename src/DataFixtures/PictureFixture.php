@@ -16,7 +16,7 @@ class PictureFixture extends Fixture
     {
         $auroraPic = new Picture();
         $auroraPic->setNameP('Aurora - Cure For Me');
-        $auroraPic->setUrl('https://static.wikia.nocookie.net/aurora-aksnes/images/d/d4/CureForMe.jpg/revision/latest/scale-to-width-down/1000?cb=20220924212116');
+        $auroraPic->setUrl('http://riffmagazine.com/wp-content/uploads/2019/02/IMG_8138.jpg');
         $manager->persist($auroraPic);
 
         $ziakPic = new Picture();
