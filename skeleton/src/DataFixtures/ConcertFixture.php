@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Concert;
-use App\Entity\ConcertHall;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
