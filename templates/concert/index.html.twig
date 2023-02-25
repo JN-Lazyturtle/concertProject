@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}
+    <h1>Concerts</h1>
+{% endblock %}
+
+{% block page_content %}
+
+
+    <div class="class container inline">
+        <div class="row align-items-start">
+            {% for concert in concertList %}
+                <div class="card" style="width: 18rem;">
+                    {% for artist in concert.getArtists() %}
+                    <img class="card-img-top" src="{{ artist.getPictureA().getUrl() }}" alt="Card image cap">
+                    <div class="card-body">
+
+                    <h5 class="card-title"> {{ artist.getNameA() }}</h5>
+                        <a href="{{ path('artist_fiche', {id: artist.id}) }}" class="btn btn-primary">Fiche artiste</a>
+
+
+                    <h5 class="card-title">{{ concert.getDateC() }}</h5>
+                        <a href="{{ path('concert_details', {id: concert.id}) }}" class="btn btn-primary">Détails</a>
+                    </div>{% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <style>
+        img{
+        }
+    </style>
+
+{% endblock %}

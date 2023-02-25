@@ -6,17 +6,21 @@
 
 {% block page_content %}
 
+<div class="class container inline">
+    <div class="row align-items-start">
 {% for artist in artistList %}
-    <h3>
-        {{ artist.getNameA() }}
-        <img src="{{ artist.getPictureA().getUrl() }}">
-
-    </h3>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ artist.getPictureA().getUrl() }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ artist.getNameA() }}</h5>
+            <a href="https://webinfo.iutmontp.univ-montp2.fr/~NUSSBAUMERJ/concertProject/public/artists/{{ artist.getId() }}" class="btn btn-primary">Fiche artiste</a>
+        </div>
+    </div>
 {% endfor %}
-
+    </div>
+    </div>
 <style>
     img{
-        max-width: 20%;
     }
 </style>
 

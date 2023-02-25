@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}
+    <h1>Gestion des concerts</h1>
+{% endblock %}
+
+{% block page_content %}
+
+    <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Artiste</th>
+                    <th scope="col">Salle</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for concert in concertList %}
+                <tr>
+                    <th scope="row">{{ concert.getId() }}</th>
+                    <td>{{ concert.getDateC().format('d-m-Y H:i') }}</td>
+                    <td>
+                        {% for artist in concert.getArtists() %}
+                            {{ artist.getNameA() }},
+                        {% endfor %}
+                    </td>
+                    <td>{{ concert.getConcertHall().getNameH() }}</td>
+                    <td>Supprimer</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+            </div>
+
+    </div>
+    <div>
+        <a href="{{ path('concert_create') }}">Ajouter un nouveau concert</a>
+    </div>
+
+    <style>
+        img{
+            max-width: 20%;
+        }
+    </style>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}
+    <h1>{{ artist.getNameA() }}</h1>
+{% endblock %}
+
+{% block page_content %}
+    <img src="{{ artist.getPictureA().getUrl() }}">
+    <div>
+
+        {{ artist.getSummaryA() }}
+
+
+    </div>
+
+
+    <style>
+        img{
+            max-width: 20%;
+        }
+    </style>
+
+{% endblock %}

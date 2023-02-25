@@ -25,8 +25,8 @@ class PictureFixture extends Fixture
         $manager->persist($ziakPic);
 
         $linkinparkPic = new Picture();
-        $linkinparkPic->setNameP('Linkin Park - poster');
-        $linkinparkPic->setUrl('https://m.media-amazon.com/images/I/71yF0tmeY3L._AC_SL1500_.jpg');
+        $linkinparkPic->setNameP('Linkin Park - en concert');
+        $linkinparkPic->setUrl('https://www.parismatch.com/lmnr/f/webp/r/960,640,FFFFFF,forcex,center-middle/img/var/pm/public/media/image/2022/03/03/17/Linkin-Park-remonte-sur-scene-pour-honorer-Chester-Bennington.jpg?VersionId=JYPc79PRzfYB3munFgz1OAQHci13pLpM');
         $manager->persist($linkinparkPic);
 
         $manager->flush();

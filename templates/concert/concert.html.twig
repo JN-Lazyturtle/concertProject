@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}
+    <h1>{{ concert.getDateC().format('d-m-Y H:i') }}</h1>
+{% endblock %}
+
+{% block page_content %}
+
+    <div>
+
+        {% for artist in concert.getArtists() %}
+        <img class="card-img-top" src="{{ artist.getPictureA().getUrl() }}" alt="Card image cap">
+        <div class="card-body">
+
+            <h5 class="card-title"> {{ artist.getNameA() }}</h5>
+
+
+        </div>
+
+        <h5 class="card-title"></h5>
+        <a href="{{ path('artist_fiche', {id: artist.id}) }}" class="btn btn-primary">Fiche artiste</a>
+        {% endfor %}
+    </div>
+
+
+    <style>
+        img{
+            max-width: 20%;
+        }
+    </style>
+
+{% endblock %}
