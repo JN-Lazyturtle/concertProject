@@ -19,7 +19,7 @@
                         <a href="{{ path('artist_fiche', {id: artist.id}) }}" class="btn btn-primary">Fiche artiste</a>
 
 
-                    <h5 class="card-title">{{ concert.getDateC() }}</h5>
+                    <h5 class="card-title">{{ concert.getDateC()|date('d-m-Y H:i') }}</h5>
                         <a href="{{ path('concert_details', {id: concert.id}) }}" class="btn btn-primary">Détails</a>
                     </div>{% endfor %}
                 </div>
