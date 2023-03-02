@@ -6,6 +6,7 @@ use App\Repository\ArtistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 
 #[ORM\Entity(repositoryClass: ArtistRepository::class)]
 class Artist
@@ -25,7 +26,8 @@ class Artist
     #[ORM\Column(length: 1000, nullable: true)]
     private ?string $summaryA = null;
 
-    #[ORM\ManyToMany(targetEntity: Concert::class, inversedBy: 'artists')]
+    #[ORM\ManyToMany(targetEntity: Concert::class, mappedBy: 'artists')]
+    #[JoinTable(name: 'artist_concert')]
     private Collection $concerts;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]

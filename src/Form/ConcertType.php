@@ -2,10 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Artist;
 use App\Entity\Concert;
-use App\Entity\ConcertHall;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,14 +14,8 @@ class ConcertType extends AbstractType
     {
         $builder
             ->add('dateC')
-            ->add('artists', EntityType::class, [
-                'class' => Artist::class,
-                'label' => 'Artists'
-            ])
-            ->add('concertHall', Type::class, [
-                'class' => ConcertHall::class,
-                'label' => 'Salle'
-            ])
+            ->add('artists')
+            ->add('concertHall')
             ->add('save', SubmitType::class)
         ;
     }

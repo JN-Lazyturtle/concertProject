@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinTable;
-use Doctrine\ORM\Mapping\ManyToMany;
 
 #[ORM\Entity(repositoryClass: ConcertRepository::class)]
 class Concert
@@ -25,7 +24,8 @@ class Concert
     #[ORM\OneToMany(mappedBy: 'concert', targetEntity: Booking::class, orphanRemoval: true)]
     private Collection $bookings;
 
-    #[ORM\ManyToMany(targetEntity: Artist::class, mappedBy: 'concerts')]
+    #[ORM\ManyToMany(targetEntity: 'Artist', inversedBy: 'concerts')]
+    #[JoinTable(name: 'artist_concert')]
     private Collection $artists;
 
     #[ORM\ManyToOne(inversedBy: 'program')]
@@ -37,7 +37,6 @@ class Concert
 
     public function __construct()
     {
-        $this->hallName = new ArrayCollection();
         $this->bookings = new ArrayCollection();
         $this->artists = new ArrayCollection();
         $this->picturesC = new ArrayCollection();

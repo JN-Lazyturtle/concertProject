@@ -28,14 +28,17 @@
                         {% endfor %}
                     </td>
                     <td>{{ concert.getConcertHall().getNameH() }}</td>
-                    <td>Supprimer</td>
+                    <td>
+                        <a href="{{ path('concert_update', { 'id': concert.getId() }) }}"
+                           class="btn btn-primary btn-lg" role="button">Modifier</a>
+                        <a href="{{ path('concert_delete', { 'id': concert.getId() }) }}"
+                           class="btn btn-danger btn-lg" role="button">Supprimer</a>
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>
             </table>
 
-
-            </div>
 
     </div>
     <div>
