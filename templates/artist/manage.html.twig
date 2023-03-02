@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}
+    <h1>Gestion des artistes</h1>
+{% endblock %}
+
+{% block page_content %}
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Présentation</th>
+                <th scope="col">Concert(s)</th>
+                <th scope="col">Image</th>
+                <th scope="col">Tags</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for artist in artistList %}
+                <tr>
+                    <th scope="row">{{ artist.getId() }}</th>
+                    <td>{{ artist.getNameA() }}</td>
+                    <td>{{ artist.getContactA() }}</td>
+                    <td>{{ artist.getSummaryA() }}</td>
+                    <td>
+                        {% for concert in artist.getConcerts() %}
+                            <p>{{ concert.getDateC().format('d-m-Y H:i') }}</p>
+                        {% endfor %}
+                    </td>
+                    <td>{{ artist.getPictureA().getUrl() }}</td>
+                    <td>
+                        {% for musicStyles in artist.getMusicStyles() %}
+                            <p>{{ musicStyles.getNameMS() }}</p>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ path('artist_update', { 'id': artist.getId() }) }}"
+                           class="btn btn-primary btn-lg" role="button">Modifier</a>
+                        <a href="{{ path('artist_delete', { 'id': artist.getId() }) }}"
+                           class="btn btn-danger btn-lg" role="button">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+    <div>
+        <a href="{{ path('artist_create') }}">Ajouter un nouvel artiste</a>
+    </div>
+
+    <style>
+        img{
+            max-width: 20%;
+        }
+    </style>
+
+{% endblock %}

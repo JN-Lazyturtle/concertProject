@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block page_title %}
+    <h1>Ajouter un nouvel artiste</h1>
+{% endblock %}
+
+{% block page_content %}
+    {{ form(form) }}
+{% endblock %}

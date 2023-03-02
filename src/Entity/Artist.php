@@ -34,6 +34,7 @@ class Artist
     #[ORM\JoinColumn(nullable: false)]
     private ?Picture $pictureA = null;
 
+    #[JoinTable(name: 'artist_music_style')]
     #[ORM\ManyToMany(targetEntity: MusicStyle::class)]
     private Collection $musicStyles;
 
