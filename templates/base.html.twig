@@ -29,8 +29,29 @@
         {% endblock %}
         {% block page_content %}
         {% endblock %}
+
         <footer>
             {{ include('footer.html.twig') }}
         </footer>
     </body>
 </html>
+
+<style>
+
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+    body {
+        background: linear-gradient(to right, #e8cbc0, #636fa4);
+        margin-bottom: 200px;
+    }
+    footer {
+        background-color: #deded5;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 160px;
+    }
+
+   </style>

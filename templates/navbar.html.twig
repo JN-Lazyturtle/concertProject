@@ -1,21 +1,21 @@
 {% block page_navbar %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{ path('concerts_list') }}">Paradox'Hall</a>
+        <a class="navbar-brand col-lg-6 col-md-6" href="{{ path('concerts_list') }}">Paradox'Hall</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse  col-lg-6 col-md-6" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="https://webinfo.iutmontp.univ-montp2.fr/~NUSSBAUMERJ/concertProject/public/artists">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://webinfo.iutmontp.univ-montp2.fr/~NUSSBAUMERJ/concertProject/public/artists">Artists</a>
+                    <a class="nav-link" href="{{ path('artists_list') }}">Artists</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://webinfo.iutmontp.univ-montp2.fr/~NUSSBAUMERJ/concertProject/public/concerts">Concerts</a>
+                    <a class="nav-link" href="{{ path('concerts_list') }}">Concerts</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://webinfo.iutmontp.univ-montp2.fr/~NUSSBAUMERJ/concertProject/public/archives">Archives</a>

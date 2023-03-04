@@ -10,7 +10,9 @@
 
         {{ artist.getSummaryA() }}
 
-
+        {% for concert in artist.getConcerts() %}
+        {{ concert.getDateC()|date('d-m-Y H:i') }}
+        {% endfor %}
     </div>
 
 
