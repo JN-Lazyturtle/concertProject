@@ -18,24 +18,24 @@ class UserFixture extends Fixture implements DependentFixtureInterface
         $user1 = new User();
         $user1->setFirstname('Bob');
         $user1->setLastname('Leponge');
-        $user1->setMailU('bobleponge@gmail.com');
-        $user1->setIsAdmin(true);
+        $user1->setEmail('bobleponge@gmail.com');
+        $user1->setPassword('motdepasse');
         $manager->persist($user1);
 
         $user2 = new User();
         $user2->setFirstname('Saitama');
         $user2->setLastname('Onepunch');
-        $user2->setMailU('saitamaonepunch@gmail.com');
+        $user2->setEmail('saitamaonepunch@gmail.com');
         $user2->addArtist($this->getReference(ArtistFixture::AURORA));
-        $user2->setIsAdmin(false);
+        $user2->setPassword('motdepasse');
         $manager->persist($user2);
 
         $user3 = new User();
         $user3->setFirstname('Hector');
         $user3->setLastname('Junior');
-        $user3->setMailU('hectorejunior@gmail.com');
+        $user3->setEmail('hectorejunior@gmail.com');
         $user3->addArtist($this->getReference(ArtistFixture::ZIAK));
-        $user3->setIsAdmin(false);
+        $user3->setPassword('motdepasse');
         $manager->persist($user3);
 
         $manager->flush();

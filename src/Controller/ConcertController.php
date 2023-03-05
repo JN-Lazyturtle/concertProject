@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ConcertController extends AbstractController
 {
@@ -31,6 +32,7 @@ class ConcertController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/concerts/admin', name: 'concerts_admin')]
     public function manageConcert(ConcertRepository $concertRepository): Response
     {
@@ -40,7 +42,8 @@ class ConcertController extends AbstractController
         ]);
     }
 
-    #[Route('/concerts/create', name: 'concert_create')]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
+    #[Route('/concerts/create/admin', name: 'concert_create')]
     public function createConcert(Request $request, EntityManagerInterface $manager): Response
     {
         $concert = new Concert();
@@ -61,7 +64,8 @@ class ConcertController extends AbstractController
         ]);
     }
 
-    #[Route('/concerts/delete/{id}', name: 'concert_delete')]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
+    #[Route('/concerts/delete/{id}/admin', name: 'concert_delete')]
     public function deleteConcert(Request $request, EntityManagerInterface $manager, Concert $concert): Response
     {
         $manager->remove($concert);
@@ -70,7 +74,8 @@ class ConcertController extends AbstractController
         return $this->redirectToRoute('concerts_admin');
     }
 
-    #[Route('/concerts/update/{id}', name: 'concert_update')]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
+    #[Route('/concerts/update/{id}/admin', name: 'concert_update')]
     public function updateConcert(Request $request, EntityManagerInterface $manager, Concert $concert): Response
     {
         $form = $this->createForm(ConcertType::class, $concert);

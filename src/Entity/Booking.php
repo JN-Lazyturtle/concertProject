@@ -18,11 +18,14 @@ class Booking
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    private ?Concert $concert = null;
+
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
+    private ?User $artists = null;
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Concert $concert = null;
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -61,6 +64,18 @@ class Booking
     public function setConcert(?Concert $concert): self
     {
         $this->concert = $concert;
+
+        return $this;
+    }
+
+    public function getArtists(): ?User
+    {
+        return $this->artists;
+    }
+
+    public function setArtists(?User $artists): self
+    {
+        $this->artists = $artists;
 
         return $this;
     }

@@ -41,7 +41,7 @@ class ArtistController extends AbstractController
         ]);
     }
 
-    #[Route('/artists/create', name: 'artist_create')]
+    #[Route('/artists/create/admin', name: 'artist_create')]
     public function createArtist(Request $request, EntityManagerInterface $manager): Response
     {
         $artist = new Artist();
@@ -62,7 +62,7 @@ class ArtistController extends AbstractController
         ]);
     }
 
-    #[Route('/artists/delete/{id}', name: 'artist_delete')]
+    #[Route('/artists/delete/{id}/admin', name: 'artist_delete')]
     public function deleteArtist(Request $request, EntityManagerInterface $manager, Artist $artist): Response
     {
         $manager->remove($artist);
@@ -71,7 +71,7 @@ class ArtistController extends AbstractController
         return $this->redirectToRoute('artists_admin');
     }
 
-    #[Route('/artists/update/{id}', name: 'artist_update')]
+    #[Route('/artists/update/{id}/admin', name: 'artist_update')]
     public function updateArtist(Request $request, EntityManagerInterface $manager, Artist $artist): Response
     {
         $form = $this->createForm(ArtistType::class, $artist);
