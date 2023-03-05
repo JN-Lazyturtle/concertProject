@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class ConcertController extends AbstractController
 {
@@ -19,6 +20,23 @@ class ConcertController extends AbstractController
     {
         $concertList = $concertRepository->findAll();
         return $this->render('concert/index.html.twig', [
+            'concertList' => $concertList,
+        ]);
+    }
+
+    #[Route('/archives', name: 'concerts_archives')]
+    public function archives(ConcertRepository $concertRepository): Response
+    {
+        $concertList = $concertRepository->findAll();
+//        $archive = [];
+//        foreach ($concertList as $key => $concert) {
+//            if ($concert.getDateC() < date("Y-m-d H:i:s")){
+//                $archive[] = $concert;
+//            }
+//        }
+//        dump($archive);
+//        die();
+        return $this->render('concert/archive.html.twig', [
             'concertList' => $concertList,
         ]);
     }

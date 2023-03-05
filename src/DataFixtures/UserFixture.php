@@ -19,6 +19,7 @@ class UserFixture extends Fixture implements DependentFixtureInterface
         $user1->setFirstname('Bob');
         $user1->setLastname('Leponge');
         $user1->setEmail('bobleponge@gmail.com');
+        $user1->setRoles(["ROLE_ADMIN"]);
         $user1->setPassword('motdepasse');
         $manager->persist($user1);
 
