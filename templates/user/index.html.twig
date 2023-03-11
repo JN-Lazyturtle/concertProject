@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}
+    <h1  class="display-4 m-2">Mon compte : {{ app.user.getFirstname() }} {{ app.user.getLastname() }}</h1>
+{% endblock %}
+
+{% block page_content %}
+
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>{{ app.user.getEmail() }}</td>
+        </tr>
+        <tr>
+            <td><p>Mes prochains concerts :</p>
+                <p>
+                    {% for booking in app.user.getBookings() %}
+                <div>
+                    {{ booking.getConcert().getDateC()|date('d-m-Y H:i') }} avec
+                    {% for artist in booking.getConcert().getArtists() %}
+                        {{ artist.getNameA() }}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td><p>Mes artistes favoris :</p>
+                <p>
+                    {% for artist in app.user.getArtists() %}
+                <div>
+                    {{ artist.getNameA() }}
+
+                    <a href="{{ path('artist_fiche', {id: artist.id}) }}"
+                       class="btn btn-primary">Fiche artiste</a>
+
+                    <a href="{{ path('user_artist', { 'id': app.user.getId(), 'artistId': artist.getId() }) }}"
+                       class="btn btn-danger">Retirer de mes favoris</a>
+                </div>
+
+                {% endfor %}
+                </p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}
