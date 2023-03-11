@@ -5,20 +5,37 @@
 {% endblock %}
 
 {% block page_content %}
-    <img src="{{ artist.getPictureA().getUrl() }}">
-    <div>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td class="text-center"><img src="{{ artist.getPictureA().getUrl() }}"></td>
+        </tr>
+        <tr>
+            <td>{{ artist.getSummaryA() }}</td>
+        </tr>
+        <tr>
+            <td><p>Prochains concerts : </p>
+                {% for concert in artist.getConcerts() %}
+                    {% if date() < concert.getDateC() %}
+                        {{ concert.getDateC()|date('d-m-Y H:i') }}
+                    {% endif %}
+                {% endfor %}</td>
+        </tr>
+        </tbody>
+    </table>
 
-        {{ artist.getSummaryA() }}
-
-        {% for concert in artist.getConcerts() %}
-        {{ concert.getDateC()|date('d-m-Y H:i') }}
-        {% endfor %}
-    </div>
-
+    {% if app.user %}
+        {% if artist in app.user.getArtists() %}
+            <div>Artiste favoris <3</div>
+        {% else %}
+            <a href="{{ path('user_artists', { 'id': app.user.getId(), 'artistId': artist.getId() }) }}"
+                                            class="btn btn-success btn-lg" role="button">Ajouter à mes favoris</a>
+        {% endif %}
+    {% endif %}
 
     <style>
         img{
-            max-width: 20%;
+            max-width: 60%;
         }
     </style>
 

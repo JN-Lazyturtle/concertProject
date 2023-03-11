@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Artist;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\ArtistRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,5 +42,28 @@ class UserController extends AbstractController
         return $this->render('user/update.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    #[Route('/user/{id}/addArtists/{artistId}', name: 'user_artists')]
+    public function updateArtists(int $artistId, EntityManagerInterface $manager, int $id, UserRepository $userRepository, ArtistRepository $artistRepository): Response
+    {
+        $user = $userRepository->find($id);
+        $artist = $artistRepository->find($artistId);
+        $user->addArtist($artist);
+        $manager->persist($user);
+        $manager->flush();
+
+        return $this->redirectToRoute('artist_fiche', ['id'=> $artist->getId()]);
+    }
+
+    #[Route('/user/{id}/deleteArtists/{artistId}', name: 'user_artist')]
+    public function deleteArtist(int $artistId, EntityManagerInterface $manager, int $id, UserRepository $userRepository, ArtistRepository $artistRepository): Response
+    {
+        $user = $userRepository->find($id);
+        $artist = $artistRepository->find($artistId);
+        $user->removeArtist($artist);
+        $manager->persist($user);
+        $manager->flush();
+        return $this->redirectToRoute('user_account', ['id'=> $user->getId()]);
     }
 }

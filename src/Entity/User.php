@@ -91,7 +91,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -106,7 +105,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -115,8 +113,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function eraseCredentials()
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 
     public function getFirstname(): ?string
@@ -127,7 +124,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
-
         return $this;
     }
 
@@ -139,7 +135,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
-
         return $this;
     }
 
@@ -155,21 +150,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->bookings->contains($booking)) {
             $this->bookings->add($booking);
-            $booking->setArtists($this);
         }
-
         return $this;
     }
 
     public function removeBooking(Booking $booking): self
     {
-        if ($this->bookings->removeElement($booking)) {
-            // set the owning side to null (unless already changed)
-            if ($booking->getArtists() === $this) {
-                $booking->setArtists(null);
-            }
-        }
-
+        $this->bookings->removeElement($booking);
         return $this;
     }
 
@@ -193,7 +180,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeArtist(Artist $artist): self
     {
         $this->artists->removeElement($artist);
-
         return $this;
     }
 }

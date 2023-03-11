@@ -7,5 +7,7 @@
 {% endblock %}
 
 {% block page_content %}
-    {{ form(form) }}
+    Prénom : {{ form(form.firstname) }}
+    Nom : {{ form(form.lastname) }}
+    Mot de passe : {{ form(form.password) }}
 {% endblock %}
