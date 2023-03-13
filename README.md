@@ -2,6 +2,11 @@ Lien IUT :
 
 https://webinfo.iutmontp.univ-montp2.fr/~NUSSBAUMERJ/concertProject/public/
 
+Pour la pagination (non terminé) il faut aller à la page 2 pour voir les concerts à venir.
+Pour se connecter en admin:
+login : patate2@gmail.com
+password : monsupermotdepasse
+
 Schéma BDD : 
 
 ![img.png](img.png)
