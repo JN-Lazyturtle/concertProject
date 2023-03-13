@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Concert;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +20,13 @@ class ConcertRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Concert::class);
+    }
+
+    public function findAllPagination(): QueryBuilder
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.id', 'ASC')
+        ;
     }
 
     public function save(Concert $entity, bool $flush = false): void

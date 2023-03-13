@@ -11,14 +11,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Symfony\Component\Validator\Constraints\DateTime;
+use Knp\Component\Pager\PaginatorInterface;
 
 class ConcertController extends AbstractController
 {
     #[Route('/', name: 'concerts_list')]
-    public function index(ConcertRepository $concertRepository): Response
+    public function index(ConcertRepository $concertRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $concertList = $concertRepository->findAll();
+        $concertListDonnees = $concertRepository->findAllPagination();
+
+        $concertList = $paginator->paginate(
+            $concertListDonnees,
+            $request->query->getInt('page', 1),
+            3
+        );
+
         return $this->render('concert/index.html.twig', [
             'concertList' => $concertList,
         ]);
@@ -28,14 +35,7 @@ class ConcertController extends AbstractController
     public function archives(ConcertRepository $concertRepository): Response
     {
         $concertList = $concertRepository->findAll();
-//        $archive = [];
-//        foreach ($concertList as $key => $concert) {
-//            if ($concert.getDateC() < date("Y-m-d H:i:s")){
-//                $archive[] = $concert;
-//            }
-//        }
-//        dump($archive);
-//        die();
+
         return $this->render('concert/archive.html.twig', [
             'concertList' => $concertList,
         ]);
