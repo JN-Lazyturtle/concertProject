@@ -2,7 +2,6 @@ Lien IUT :
 
 https://webinfo.iutmontp.univ-montp2.fr/~NUSSBAUMERJ/concertProject/public/
 
-
 Schéma BDD : 
 
 ![img.png](img.png)
@@ -29,3 +28,4 @@ Nice to Have :
 - [x] Une page qui affiche les concerts passés, classé par année, avec un onglet NavBar
 dédié.
 - [x] Mise en place d’un système de gestion de favoris.
+- [x] Début de pagination (non terminé)
