@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ArtistController extends AbstractController
 {
@@ -31,7 +32,7 @@ class ArtistController extends AbstractController
             'artist' => $artist,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/artists/admin', name: 'artists_admin')]
     public function manageArtist(ArtistRepository $artistRepository): Response
     {
@@ -40,7 +41,7 @@ class ArtistController extends AbstractController
             'artistList' => $artists,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/artists/create/admin', name: 'artist_create')]
     public function createArtist(Request $request, EntityManagerInterface $manager): Response
     {
@@ -61,7 +62,7 @@ class ArtistController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/artists/delete/{id}/admin', name: 'artist_delete')]
     public function deleteArtist(Request $request, EntityManagerInterface $manager, Artist $artist): Response
     {
@@ -70,7 +71,7 @@ class ArtistController extends AbstractController
 
         return $this->redirectToRoute('artists_admin');
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/artists/update/{id}/admin', name: 'artist_update')]
     public function updateArtist(Request $request, EntityManagerInterface $manager, Artist $artist): Response
     {

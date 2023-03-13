@@ -60,7 +60,7 @@ class ConcertController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_SUPER_ADMIN')]
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/concerts/create/admin', name: 'concert_create')]
     public function createConcert(Request $request, EntityManagerInterface $manager): Response
     {
@@ -82,7 +82,7 @@ class ConcertController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_SUPER_ADMIN')]
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/concerts/delete/{id}/admin', name: 'concert_delete')]
     public function deleteConcert(Request $request, EntityManagerInterface $manager, Concert $concert): Response
     {
@@ -92,7 +92,7 @@ class ConcertController extends AbstractController
         return $this->redirectToRoute('concerts_admin');
     }
 
-    #[IsGranted('ROLE_SUPER_ADMIN')]
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/concerts/update/{id}/admin', name: 'concert_update')]
     public function updateConcert(Request $request, EntityManagerInterface $manager, Concert $concert): Response
     {
