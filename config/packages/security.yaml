@@ -18,8 +18,8 @@ security:
                 login_path: app_sign_in
                 check_path: app_sign_in
                 enable_csrf: true
-                username_parameter: "login_form[username]"
-                password_parameter: "login_form[password]"
+                username_parameter: "_username"
+                password_parameter: "_password"
             logout:
                 path: app_sign_out
                 target: concerts_list
